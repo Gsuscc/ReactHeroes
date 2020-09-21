@@ -14,3 +14,34 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+@font-face {
+  font-family: superHeroFont;
+  src: url("/Bangers.ttf");
+}
+
+.heroContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+}
+
+.heroCard {
+  text-align: center;
+  font-size: x-large;
+  margin: 10px;
+  border: solid black 1px;
+  border-radius: 5px;
+  background-color: orange;
+}
+
+.heroImg {
+  align-self: stretch;
+  height: 220px;
+  width: 150px;
+  vertical-align: bottom;
+}
+
+.name {
+  font-family: superHeroFont;
+}

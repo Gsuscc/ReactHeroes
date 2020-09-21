@@ -16,5 +16,5 @@ export const HeroesList = (props) => {
     return heroesList;
   };
 
-  return <div>{getHeroes().map((hero) => hero)}</div>;
+  return <div className="heroContainer">{getHeroes().map((hero) => hero)}</div>;
 };

@@ -40,9 +40,8 @@ export const HeroCard = (props) => {
   return (
     <div className="heroCard">
       <p className="name">{hero.name}</p>
-      <div>
-        <img className="heroImg" src={hero.image.url} alt="img"></img>
-      </div>
+
+      <img className="heroImg" src={hero.image.url} alt="img"></img>
     </div>
   );
 };
