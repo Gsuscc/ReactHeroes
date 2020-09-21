@@ -12,7 +12,7 @@ export const HeroCard = (props) => {
   useEffect(() => {
     axios
       .get(
-        `https://cors-anywhere.herokuapp.com/https://superheroapi.com/api/3597117540350761/${id}`
+        `http://atib.servebeer.com:55555/https://superheroapi.com/api/3597117540350761/${id}`
       )
       .then((response) => {
         console.log(response);
