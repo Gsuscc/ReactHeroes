@@ -1,10 +1,13 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { FrontPage } from "./FrontPage";
+import { BackPage } from "./BackPage";
 
 export const HeroCard = (props) => {
   const id = props.id;
   const [hero, setHero] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [isFlipped, setIsFlipped] = useState(false);
 
   useEffect(() => {
     axios
@@ -19,15 +22,16 @@ export const HeroCard = (props) => {
       });
   }, [id]);
 
+  const flipped = () => {
+    setIsFlipped(!isFlipped);
+  };
+
   if (isLoading) {
     return <div></div>;
   }
   return (
-    <div className="heroCard">
-      <div className="cardContainer">
-        <p className="name">{hero.name}</p>
-        <img className="heroImg" src={hero.image.url} alt="img"></img>
-      </div>
+    <div onClick={flipped}>
+      {isFlipped ? <BackPage hero={hero} /> : <FrontPage hero={hero} />}
     </div>
   );
 };

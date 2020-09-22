@@ -34,6 +34,8 @@ code {
   border: solid black 1px;
   border-radius: 5px;
   background-color: orange;
+  min-width: 150px;
+  min-height: 295px;
 }
 
 .heroCard {
