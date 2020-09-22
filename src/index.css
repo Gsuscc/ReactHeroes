@@ -46,9 +46,13 @@ code {
   justify-content: center;
   max-height: 75px;
   min-height: 75px;
+  text-shadow: black 1px 1px 0px;
+  font-size: 1.2em;
+  letter-spacing: 1px;
 }
 
 .heroCard {
+  font-family: superHeroFont;
   -webkit-animation: fadein 3s;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
   transition: transform 0.2s;
@@ -62,6 +66,18 @@ code {
 .heroCard:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
   transform: scale(1.5);
+}
+
+.statContainer {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  font-size: small;
+  background-color: #ffffff55;
+  margin: 1px;
+}
+.statsContainer {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 @keyframes fadein {
