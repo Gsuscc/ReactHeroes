@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { GlobalContext } from "./GlobalState";
+import React from "react";
 import { HeroesList } from "./components/HeroesList";
 import styled from "styled-components";
 
