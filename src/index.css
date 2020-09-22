@@ -33,6 +33,17 @@ code {
   border: solid black 1px;
   border-radius: 5px;
   background-color: orange;
+  -webkit-animation: fadein 3s;
+}
+
+@keyframes fadein {
+  from {
+    animation-delay: 1s;
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .heroImg {
