@@ -8,6 +8,7 @@ body {
   background-image: url("/background.png");
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 }
 
 code {
@@ -35,7 +36,16 @@ code {
   border-radius: 5px;
   background-color: orange;
   min-width: 150px;
+  max-width: 150px;
   min-height: 295px;
+}
+
+.name {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  max-height: 75px;
+  min-height: 75px;
 }
 
 .heroCard {

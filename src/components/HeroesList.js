@@ -10,7 +10,7 @@ export const HeroesList = (props) => {
 
   const getHeroes = () => {
     let heroesList = [];
-    for (let i = page * 10 + 1; i < page * 10 + 10; i++) {
+    for (let i = page * 10 + 1; i < page * 10 + 19; i++) {
       heroesList.push(<HeroCard id={i} key={i} />);
     }
     return heroesList;

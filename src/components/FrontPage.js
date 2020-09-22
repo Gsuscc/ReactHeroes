@@ -4,9 +4,11 @@ export const FrontPage = (props) => {
   const hero = props.hero;
 
   return (
-    <div className="heroCard">
+    <div className="heroCard frontPage">
       <div className="cardContainer">
-        <p className="name">{hero.name}</p>
+        <div className="name">
+          <div>{hero.name}</div>
+        </div>
         <img className="heroImg" src={hero.image.url} alt="img"></img>
       </div>
     </div>

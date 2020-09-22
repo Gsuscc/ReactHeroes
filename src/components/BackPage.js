@@ -4,9 +4,11 @@ export const BackPage = (props) => {
   const hero = props.hero;
 
   return (
-    <div className="heroCard">
+    <div className="heroCard backPage isFlipped">
       <div className="cardContainer">
-        <p className="name">{hero.name}</p>
+        <div className="name">
+          <div>{hero.name}</div>
+        </div>
         <div>Stats</div>
       </div>
     </div>
