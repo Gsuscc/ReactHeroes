@@ -8,13 +8,20 @@ const H1 = styled.h1`
   font-family: superHeroFont;
   font-size: 3.5rem;
   text-align: center;
-  color: brown;
+  color: white;
+  background-color: red;
+  max-width: 450px;
+  min-width: 400px;
+  letter-spacing: 1px;
+  border-radius: 1px;
 `;
 
 function App() {
   return (
     <div className="App">
-      <H1>Heroes of React</H1>
+      <div className="header">
+        <H1>Heroes of React</H1>
+      </div>
       <HeroesList />
     </div>
   );

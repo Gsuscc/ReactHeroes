@@ -100,7 +100,7 @@ code {
 .name {
   font-family: superHeroFont;
 }
-
-h1 {
-  font-family: superHeroFont;
+.header {
+  display: grid;
+  justify-content: center;
 }
