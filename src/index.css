@@ -104,3 +104,34 @@ code {
   display: grid;
   justify-content: center;
 }
+
+.MuiAppBar-colorPrimary {
+  background-color: transparent !important;
+  color: black !important;
+}
+
+.MuiPaper-elevation4 {
+  box-shadow: none !important;
+}
+
+.makeStyles-root-1 {
+  height: 20px !important;
+}
+
+.MuiPaper-root {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.MuiTypography-body1,
+.MuiTypography-h6 {
+  font-family: superHeroFont !important;
+  text-align: center !important;
+  font-size: x-large !important;
+  letter-spacing: 1px !important;
+}
+
+.MuiTypography-h6 {
+  margin-left: 20px !important;
+}
