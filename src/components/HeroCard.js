@@ -22,6 +22,12 @@ export const HeroCard = (props) => {
       });
   }, [id]);
 
+  const getColor = () => {
+    if (hero.biography.alignment === "good") return { color: "darkgreen" };
+    if (hero.biography.alignment === "bad") return { color: "darkred" };
+    return { color: "yellow" };
+  };
+
   const flipped = () => {
     setIsFlipped(!isFlipped);
   };
@@ -31,7 +37,11 @@ export const HeroCard = (props) => {
   }
   return (
     <div onClick={flipped}>
-      {isFlipped ? <BackPage hero={hero} /> : <FrontPage hero={hero} />}
+      {isFlipped ? (
+        <BackPage hero={hero} getColor={getColor} />
+      ) : (
+        <FrontPage hero={hero} getColor={getColor} />
+      )}
     </div>
   );
 };
