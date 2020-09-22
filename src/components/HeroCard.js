@@ -24,8 +24,10 @@ export const HeroCard = (props) => {
   }
   return (
     <div className="heroCard">
-      <p className="name">{hero.name}</p>
-      <img className="heroImg" src={hero.image.url} alt="img"></img>
+      <div className="cardContainer">
+        <p className="name">{hero.name}</p>
+        <img className="heroImg" src={hero.image.url} alt="img"></img>
+      </div>
     </div>
   );
 };

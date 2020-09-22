@@ -23,17 +23,33 @@ code {
 .heroContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: left;
+  justify-content: center;
+  margin-left: 15%;
+  margin-right: 15%;
 }
 
-.heroCard {
+.cardContainer {
   text-align: center;
   font-size: x-large;
-  margin: 10px;
   border: solid black 1px;
   border-radius: 5px;
   background-color: orange;
+}
+
+.heroCard {
   -webkit-animation: fadein 3s;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s;
+  padding: 5px;
+  background: white;
+  border: solid black 1px;
+  border-radius: 5px;
+  margin: 25px;
+}
+
+.heroCard:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+  transform: scale(1.5);
 }
 
 @keyframes fadein {
