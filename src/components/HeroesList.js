@@ -1,41 +1,43 @@
 import React, { useCallback, useState, useRef, useEffect } from "react";
-import { GlobalContext } from "../GlobalState";
 import { HeroCard } from "./HeroCard";
 
 export const HeroesList = (props) => {
-  // const { heroId } = useContext(GlobalContext);
   const [lastId, setLastId] = useState(18);
   const [heroesList, setHeroesList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [id, setId] = useState(1);
-
+  const isLoading = useRef(false);
+  const id = useRef(1);
   const observer = useRef();
+
   const lastCard = useCallback(
     (card) => {
-      console.log(card);
-      if (isLoading) return;
-      if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && id < 731) {
-          console.log("visivle");
+        if (entries[0].isIntersecting && id.current < 731) {
+          if (isLoading.current) return;
+          if (observer.current) observer.current.disconnect(card);
+          console.log("visible");
           setLastId((lastId) => lastId + 18);
+          isLoading.current = false;
         }
       });
       if (card) observer.current.observe(card);
-      console.log("last");
     },
     [id, isLoading]
   );
 
+  const finishLoading = useCallback(() => {
+    isLoading.current = false;
+  }, [isLoading]);
+
   useEffect(() => {
-    setIsLoading(true);
+    if (isLoading.current) return;
+    isLoading.current = true;
     let newList = [];
-    let currentId = id;
+    let currentId = id.current;
     while (currentId <= lastId) {
       if (currentId === lastId) {
         newList.push(
-          <div ref={lastCard}>
-            <HeroCard id={currentId} key={currentId} />
+          <div ref={lastCard} id={currentId}>
+            <HeroCard id={currentId} key={currentId} callback={finishLoading} />
           </div>
         );
       } else {
@@ -44,8 +46,8 @@ export const HeroesList = (props) => {
       currentId++;
     }
     setHeroesList((heroesList) => [...heroesList, newList]);
-    setId((id) => (id = currentId));
-  }, [id, lastCard, lastId]);
+    id.current = currentId;
+  }, [id, lastCard, lastId, finishLoading]);
 
   return <div className="heroContainer">{heroesList.map((hero) => hero)}</div>;
 };
