@@ -1,6 +1,7 @@
 import React from "react";
 import { HeroesList } from "./components/HeroesList";
 import styled from "styled-components";
+import Navbar from "./components/Navbar";
 
 import "./App.css";
 
@@ -20,6 +21,7 @@ function App() {
   return (
     <div className="App">
       <div className="header">
+        <Navbar />
         <H1>Heroes of React</H1>
       </div>
       <HeroesList />
