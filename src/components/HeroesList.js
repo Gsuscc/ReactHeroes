@@ -1,5 +1,6 @@
 import React, { useCallback, useState, useRef, useEffect } from "react";
 import { HeroCard } from "./HeroCard";
+import cardFetch from "./CardFetch";
 
 export const HeroesList = (props) => {
   const [lastId, setLastId] = useState(18);
@@ -15,13 +16,9 @@ export const HeroesList = (props) => {
           observer.current.disconnect(card);
           return;
         }
-        console.log("visible");
         if (entries[0].intersectionRatio <= 0) return;
-        console.log("intersected");
         if (id.current > 731) return;
-        console.log("in range");
         if (isLoading.current) return;
-        console.log("load");
         setLastId((lastId) => lastId + 18);
         isLoading.current = false;
       });
@@ -34,37 +31,42 @@ export const HeroesList = (props) => {
     isLoading.current = false;
   }, [isLoading]);
 
+  const loadCardData = useCallback(
+    (hero) => {
+      let newCard = <HeroCard hero={hero} key={hero.id} />;
+      if (parseInt(hero.id) === lastId) {
+        finishLoading();
+      }
+      setHeroesList((heroesList) => [...heroesList, newCard]);
+    },
+    [lastId, finishLoading]
+  );
+
   useEffect(() => {
     if (isLoading.current) return;
     isLoading.current = true;
-    let newList = [];
     let currentId = id.current;
     while (currentId <= lastId && currentId <= 731) {
-      if (currentId === lastId) {
-        newList.push(
-          <div id={currentId}>
-            <HeroCard id={currentId} key={currentId} callback={finishLoading} />
-          </div>
-        );
-      } else {
-        newList.push(<HeroCard id={currentId} key={currentId} />);
-      }
+      cardFetch(currentId, loadCardData);
       currentId++;
     }
-    setHeroesList((heroesList) => [...heroesList, newList]);
     id.current = currentId;
-  }, [id, lastId, finishLoading]);
+  }, [id, lastId, loadCardData]);
 
   return (
     <div>
-      <div className="heroContainer">{heroesList.map((hero) => hero)}</div>
+      <div className="heroContainer">
+        {heroesList.map((hero) => {
+          return hero;
+        })}
+      </div>
       <div
         classname="scrollTrigger"
         ref={lastCard}
         id="trigger"
         key="trigger"
       ></div>
-      {isLoading ? <p className="heroFont">Loading...</p> : null}
+      {isLoading.current ? <p className="heroFont">Loading...</p> : null}
       <div className="space"></div>
     </div>
   );

@@ -1,28 +1,10 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import { FrontPage } from "./FrontPage";
 import { BackPage } from "./BackPage";
 
 export const HeroCard = (props) => {
-  const callback = props.callback;
-  const id = props.id;
-
-  const [hero, setHero] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
+  const hero = props.hero;
   const [isFlipped, setIsFlipped] = useState(false);
-
-  useEffect(() => {
-    axios
-      .get(
-        `http://atib.servebeer.com:55555/https://superheroapi.com/api/3597117540350761/${id}`
-      )
-      .then((response) => {
-        let hero = response.data;
-        if (callback) callback();
-        setHero(hero);
-        setIsLoading(false);
-      });
-  }, [id, callback]);
 
   const getColor = () => {
     if (hero.biography.alignment === "good") return { color: "darkgreen" };
@@ -31,14 +13,9 @@ export const HeroCard = (props) => {
   };
 
   const flipped = (e) => {
-    console.log(e.currentTarget);
     if (e.currentTarget === document.querySelector(`#hero${hero.id}`)) return;
     setIsFlipped(!isFlipped);
   };
-
-  if (isLoading) {
-    return <div></div>;
-  }
 
   return (
     <div onClick={flipped}>
