@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import { FrontPage } from "./FrontPage";
 import { BackPage } from "./BackPage";
 
 export const HeroCard = (props) => {
   const hero = props.hero;
-
-  const [isLoading, setIsLoading] = useState(true);
   const [isFlipped, setIsFlipped] = useState(false);
 
   const getColor = () => {
@@ -16,14 +13,9 @@ export const HeroCard = (props) => {
   };
 
   const flipped = (e) => {
-    console.log(e.currentTarget);
     if (e.currentTarget === document.querySelector(`#hero${hero.id}`)) return;
     setIsFlipped(!isFlipped);
   };
-
-  if (isLoading) {
-    return <div></div>;
-  }
 
   return (
     <div onClick={flipped}>
