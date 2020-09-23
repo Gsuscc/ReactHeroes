@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState, useCallback } from "react";
 import { Stat } from "./Stat";
 import { GlobalContext } from "../GlobalState";
 
@@ -7,15 +7,22 @@ export const BackPage = (props) => {
   const getColor = props.getColor;
   const { marker } = useContext(GlobalContext);
   const [markedCards, setMarkedCards] = marker;
+  const [isChecked, setIsChecked] = useState(false);
 
-  const handleChange = () => {
-    if (isInGroup()) {
-      markedCards.splice(markedCards.indexOf(hero.id), 1);
-    } else {
-      markedCards.push(hero.id);
+  const handleChange = useCallback((e) => {
+    if (e) {
+      e.stopPropagation();
+      isChecked ? setIsChecked(false) : setIsChecked(true);
+      if (isInGroup()) {
+        markedCards.splice(markedCards.indexOf(hero.id), 1);
+      } else {
+        markedCards.push(hero.id);
+      }
+      console.log(markedCards);
     }
-  };
+  });
 
+  useEffect(() => handleChange(), [handleChange]);
   const isInGroup = () => markedCards.includes(hero.id);
 
   return (
@@ -35,7 +42,7 @@ export const BackPage = (props) => {
             <input
               type="checkbox"
               id={`hero${hero.id}`}
-              onChange={handleChange}
+              onClick={handleChange}
               checked={isInGroup()}
             ></input>
           </div>

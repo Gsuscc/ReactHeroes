@@ -31,9 +31,6 @@ export const HeroCard = (props) => {
   };
 
   const flipped = (e) => {
-    document.querySelector(`#hero${hero.id}`) != null
-      ? console.log(document.querySelector(`#hero${hero.id}`).checked)
-      : console.log("null");
     console.log(e.currentTarget);
     if (e.currentTarget === document.querySelector(`#hero${hero.id}`)) return;
     setIsFlipped(!isFlipped);
