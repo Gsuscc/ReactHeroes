@@ -9,7 +9,7 @@ const H1 = styled.h1`
   font-family: superHeroFont;
   font-size: 3.5rem;
   text-align: center;
-  color: white;
+  color: white;£
   background-color: red;
   max-width: 450px;
   min-width: 400px;

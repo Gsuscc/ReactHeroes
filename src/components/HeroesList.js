@@ -33,7 +33,7 @@ export const HeroesList = (props) => {
     isLoading.current = true;
     let newList = [];
     let currentId = id.current;
-    while (currentId <= lastId || currentId <= 731) {
+    while (currentId <= lastId && currentId <= 731) {
       if (currentId === lastId) {
         newList.push(
           <div ref={lastCard} id={currentId}>

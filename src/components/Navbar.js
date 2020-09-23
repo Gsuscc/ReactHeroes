@@ -86,6 +86,11 @@ export default function PersistentDrawerLeft() {
     setOpen(false);
   };
 
+  const handlClickEvent = (e) => {
+    let clickedItem = e.target;
+    console.log(clickedItem);
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -132,7 +137,7 @@ export default function PersistentDrawerLeft() {
 
         <List>
           {["Search", "Publisher", "Alignment", "Fight"].map((text, index) => (
-            <ListItem button key={text}>
+            <ListItem onClick={handlClickEvent} button key={text}>
               <ListItemText primary={text} />
             </ListItem>
           ))}
