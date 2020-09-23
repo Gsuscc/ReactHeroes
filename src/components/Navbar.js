@@ -137,11 +137,11 @@ export default function PersistentDrawerLeft() {
 
         <List>
           {["Search", "Publisher", "Alignment", "Fight"].map((text, index) => (
-            // <Link to={`/${text.toLowerCase()}`}>
-            <ListItem button key={text}>
-              <ListItemText primary={text} />
-            </ListItem>
-            // </Link>
+            <Link to={`/${text.toLowerCase()}`}>
+              <ListItem button className="navbar-item" key={text}>
+                <ListItemText primary={text} />
+              </ListItem>
+            </Link>
           ))}
         </List>
       </Drawer>
