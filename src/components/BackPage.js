@@ -14,9 +14,9 @@ export const BackPage = (props) => {
       e.stopPropagation();
       isChecked ? setIsChecked(false) : setIsChecked(true);
       if (isInGroup()) {
-        markedCards.splice(markedCards.indexOf(hero), 1);
+        setMarkedCards(markedCards.filter((item) => item.id !== hero.id));
       } else {
-        markedCards.push(hero);
+        setMarkedCards((markedCards) => [...markedCards, hero]);
       }
       console.log(markedCards);
     }
