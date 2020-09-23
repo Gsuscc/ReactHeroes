@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useContext, useEffect, useState, useCallback } from "react";
 import { Stat } from "./Stat";
+import { GlobalContext } from "../GlobalState";
 
 export const BackPage = (props) => {
   const hero = props.hero;
   const getColor = props.getColor;
+  const { marker } = useContext(GlobalContext);
+  const [markedCards, setMarkedCards] = marker;
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleChange = useCallback((e) => {
+    if (e) {
+      e.stopPropagation();
+      isChecked ? setIsChecked(false) : setIsChecked(true);
+      if (isInGroup()) {
+        markedCards.splice(markedCards.indexOf(hero.id), 1);
+      } else {
+        markedCards.push(hero.id);
+      }
+      console.log(markedCards);
+    }
+  });
+
+  useEffect(() => handleChange(), [handleChange]);
+  const isInGroup = () => markedCards.includes(hero.id);
 
   return (
     <div className="heroCard backPage isFlipped">
@@ -17,6 +37,14 @@ export const BackPage = (props) => {
             {Object.entries(hero.powerstats).map(([key, value]) => {
               return <Stat name={key} value={value} />;
             })}
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              id={`hero${hero.id}`}
+              onClick={handleChange}
+              checked={isInGroup()}
+            ></input>
           </div>
         </div>
       </div>

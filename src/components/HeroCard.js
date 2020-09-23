@@ -6,6 +6,7 @@ import { BackPage } from "./BackPage";
 export const HeroCard = (props) => {
   const callback = props.callback;
   const id = props.id;
+
   const [hero, setHero] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isFlipped, setIsFlipped] = useState(false);
@@ -29,13 +30,16 @@ export const HeroCard = (props) => {
     return { color: "yellow" };
   };
 
-  const flipped = () => {
+  const flipped = (e) => {
+    console.log(e.currentTarget);
+    if (e.currentTarget === document.querySelector(`#hero${hero.id}`)) return;
     setIsFlipped(!isFlipped);
   };
 
   if (isLoading) {
     return <div></div>;
   }
+
   return (
     <div onClick={flipped}>
       {isFlipped ? (

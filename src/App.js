@@ -28,7 +28,7 @@ function App() {
           <Navbar />
         </div>
         <Switch>
-          <Route exact path="/">
+          <Route path="/">
             <HeroesList />
           </Route>
           <Route path="/fight">
