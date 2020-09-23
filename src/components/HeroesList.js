@@ -1,7 +1,9 @@
 import React, { useCallback, useState, useRef, useEffect } from "react";
 import { HeroCard } from "./HeroCard";
+import cardFetch from "./CardFetch";
 
 export const HeroesList = (props) => {
+  const newCardList = useRef([]);
   const [lastId, setLastId] = useState(18);
   const [heroesList, setHeroesList] = useState([]);
   const isLoading = useRef(false);
@@ -34,26 +36,29 @@ export const HeroesList = (props) => {
     isLoading.current = false;
   }, [isLoading]);
 
+  const loadCardData = useCallback(
+    (hero) => {
+      newCardList.current.push(<HeroCard hero={hero} key={hero.id} />);
+      if (hero.id === lastId) {
+        finishLoading();
+        setHeroesList((heroesList) => [...heroesList, newCardList]);
+      }
+    },
+    [lastId, finishLoading, newCardList]
+  );
+
   useEffect(() => {
     if (isLoading.current) return;
     isLoading.current = true;
-    let newList = [];
+    newCardList.current = [];
     let currentId = id.current;
     while (currentId <= lastId && currentId <= 731) {
-      if (currentId === lastId) {
-        newList.push(
-          <div id={currentId}>
-            <HeroCard id={currentId} key={currentId} callback={finishLoading} />
-          </div>
-        );
-      } else {
-        newList.push(<HeroCard id={currentId} key={currentId} />);
-      }
+      cardFetch(currentId, loadCardData);
+
       currentId++;
     }
-    setHeroesList((heroesList) => [...heroesList, newList]);
     id.current = currentId;
-  }, [id, lastId, finishLoading]);
+  }, [id, lastId, newCardList, loadCardData]);
 
   return (
     <div>

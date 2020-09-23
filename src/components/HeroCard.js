@@ -4,25 +4,10 @@ import { FrontPage } from "./FrontPage";
 import { BackPage } from "./BackPage";
 
 export const HeroCard = (props) => {
-  const callback = props.callback;
-  const id = props.id;
+  const hero = props.hero;
 
-  const [hero, setHero] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isFlipped, setIsFlipped] = useState(false);
-
-  useEffect(() => {
-    axios
-      .get(
-        `http://atib.servebeer.com:55555/https://superheroapi.com/api/3597117540350761/${id}`
-      )
-      .then((response) => {
-        let hero = response.data;
-        if (callback) callback();
-        setHero(hero);
-        setIsLoading(false);
-      });
-  }, [id, callback]);
 
   const getColor = () => {
     if (hero.biography.alignment === "good") return { color: "darkgreen" };
