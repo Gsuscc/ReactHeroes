@@ -13,6 +13,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -86,9 +87,8 @@ export default function PersistentDrawerLeft() {
     setOpen(false);
   };
 
-  const handlClickEvent = (e) => {
-    let clickedItem = e.target;
-    console.log(clickedItem);
+  const handlClickEvent = (text) => {
+    console.log(text);
   };
 
   return (
@@ -137,9 +137,11 @@ export default function PersistentDrawerLeft() {
 
         <List>
           {["Search", "Publisher", "Alignment", "Fight"].map((text, index) => (
-            <ListItem onClick={handlClickEvent} button key={text}>
+            // <Link to={`/${text.toLowerCase()}`}>
+            <ListItem button key={text}>
               <ListItemText primary={text} />
             </ListItem>
+            // </Link>
           ))}
         </List>
       </Drawer>
