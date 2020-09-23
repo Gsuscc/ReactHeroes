@@ -3,7 +3,6 @@ import { HeroCard } from "./HeroCard";
 import cardFetch from "./CardFetch";
 
 export const HeroesList = (props) => {
-  const newCardList = useRef();
   const [lastId, setLastId] = useState(18);
   const [heroesList, setHeroesList] = useState([]);
   const isLoading = useRef(false);
@@ -34,26 +33,25 @@ export const HeroesList = (props) => {
 
   const loadCardData = useCallback(
     (hero) => {
-      newCardList.current.push(<HeroCard hero={hero} key={hero.id} />);
+      let newCard = <HeroCard hero={hero} key={hero.id} />;
       if (parseInt(hero.id) === lastId) {
         finishLoading();
-        setHeroesList((heroesList) => [...heroesList, ...newCardList.current]);
       }
+      setHeroesList((heroesList) => [...heroesList, newCard]);
     },
-    [lastId, finishLoading, newCardList]
+    [lastId, finishLoading]
   );
 
   useEffect(() => {
     if (isLoading.current) return;
     isLoading.current = true;
-    newCardList.current = [];
     let currentId = id.current;
     while (currentId <= lastId && currentId <= 731) {
       cardFetch(currentId, loadCardData);
       currentId++;
     }
     id.current = currentId;
-  }, [id, lastId, newCardList, loadCardData]);
+  }, [id, lastId, loadCardData]);
 
   return (
     <div>
