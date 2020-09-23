@@ -8,10 +8,15 @@ export const BackPage = (props) => {
   const { marker } = useContext(GlobalContext);
   const [markedCards, setMarkedCards] = marker;
 
-  const handleChange = (id, e) => {
-    console.log(id);
-    console.log(e);
+  const handleChange = () => {
+    if (isInGroup()) {
+      markedCards.splice(markedCards.indexOf(hero.id), 1);
+    } else {
+      markedCards.push(hero.id);
+    }
   };
+
+  const isInGroup = () => markedCards.includes(hero.id);
 
   return (
     <div className="heroCard backPage isFlipped">
@@ -29,7 +34,9 @@ export const BackPage = (props) => {
           <div>
             <input
               type="checkbox"
-              onChange={handleChange.bind(null, hero.id)}
+              id={`hero${hero.id}`}
+              onChange={handleChange}
+              checked={isInGroup()}
             ></input>
           </div>
         </div>
