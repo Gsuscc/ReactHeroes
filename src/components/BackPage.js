@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Stat } from "./Stat";
+import { GlobalContext } from "../GlobalState";
 
 export const BackPage = (props) => {
   const hero = props.hero;
   const getColor = props.getColor;
+  const { marker } = useContext(GlobalContext);
+  const [markedCards, setMarkedCards] = marker;
+
+  const handleChange = (id, e) => {
+    console.log(id);
+    console.log(e);
+  };
 
   return (
     <div className="heroCard backPage isFlipped">
@@ -17,6 +25,12 @@ export const BackPage = (props) => {
             {Object.entries(hero.powerstats).map(([key, value]) => {
               return <Stat name={key} value={value} />;
             })}
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              onChange={handleChange.bind(null, hero.id)}
+            ></input>
           </div>
         </div>
       </div>
