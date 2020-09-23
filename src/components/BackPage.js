@@ -14,16 +14,16 @@ export const BackPage = (props) => {
       e.stopPropagation();
       isChecked ? setIsChecked(false) : setIsChecked(true);
       if (isInGroup()) {
-        markedCards.splice(markedCards.indexOf(hero.id), 1);
+        markedCards.splice(markedCards.indexOf(hero), 1);
       } else {
-        markedCards.push(hero.id);
+        markedCards.push(hero);
       }
       console.log(markedCards);
     }
   });
 
   useEffect(() => handleChange(), [handleChange]);
-  const isInGroup = () => markedCards.includes(hero.id);
+  const isInGroup = () => markedCards.includes(hero);
 
   return (
     <div className="heroCard backPage isFlipped">
