@@ -11,13 +11,19 @@ export const HeroesList = (props) => {
   const lastCard = useCallback(
     (card) => {
       observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && id.current < 731) {
-          if (isLoading.current) return;
-          if (observer.current) observer.current.disconnect(card);
-          console.log("visible");
-          setLastId((lastId) => lastId + 18);
-          isLoading.current = false;
+        if (id.current > 731) {
+          observer.current.disconnect(card);
+          return;
         }
+        console.log("visible");
+        if (entries[0].intersectionRatio <= 0) return;
+        console.log("intersected");
+        if (id.current > 731) return;
+        console.log("in range");
+        if (isLoading.current) return;
+        console.log("load");
+        setLastId((lastId) => lastId + 18);
+        isLoading.current = false;
       });
       if (card) observer.current.observe(card);
     },
@@ -36,7 +42,7 @@ export const HeroesList = (props) => {
     while (currentId <= lastId && currentId <= 731) {
       if (currentId === lastId) {
         newList.push(
-          <div ref={lastCard} id={currentId}>
+          <div id={currentId}>
             <HeroCard id={currentId} key={currentId} callback={finishLoading} />
           </div>
         );
@@ -47,7 +53,19 @@ export const HeroesList = (props) => {
     }
     setHeroesList((heroesList) => [...heroesList, newList]);
     id.current = currentId;
-  }, [id, lastCard, lastId, finishLoading]);
+  }, [id, lastId, finishLoading]);
 
-  return <div className="heroContainer">{heroesList.map((hero) => hero)}</div>;
+  return (
+    <div>
+      <div className="heroContainer">{heroesList.map((hero) => hero)}</div>
+      <div
+        classname="scrollTrigger"
+        ref={lastCard}
+        id="trigger"
+        key="trigger"
+      ></div>
+      {isLoading ? <p className="heroFont">Loading...</p> : null}
+      <div className="space"></div>
+    </div>
+  );
 };
