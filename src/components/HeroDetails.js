@@ -184,17 +184,41 @@ const PowerStats = (props) => {
   return (
     <div className="superHeroDetailedContainer">
       <p className="detailCategory">Combat:</p>
-      <div>{powerStats["combat"]}</div>
-      <p className="detailCategory">Durability:</p>
-      <div>{powerStats["durability"]}</div>
-      <p className="detailCategory">Intelligence:</p>
-      <div>{powerStats["intelligence"]}</div>
-      <p className="detailCategory">Power:</p>
-      <div>{powerStats["power"]}</div>
-      <p className="detailCategory">Speed:</p>
-      <div>{powerStats["speed"]}</div>
-      <p className="detailCategory">Strength:</p>
-      <div>{powerStats["strength"]}</div>
+      <div className="powerbar">
+        <span style={{ width: `${powerStats["combat"]}%` }}>
+          {powerStats["combat"]}
+        </span>
+      </div>
+      <p className="detailCategory ">Durability:</p>
+      <div className="powerbar">
+        <span style={{ width: `${powerStats["durability"]}%` }}>
+          {powerStats["durability"]}
+        </span>
+      </div>
+      <p className="detailCategory ">Intelligence:</p>
+      <div className="powerbar">
+        <span style={{ width: `${powerStats["intelligence"]}%` }}>
+          {powerStats["intelligence"]}
+        </span>
+      </div>
+      <p className="detailCategory ">Power:</p>
+      <div className="powerbar">
+        <span style={{ width: `${powerStats["power"]}%` }}>
+          {powerStats["power"]}
+        </span>
+      </div>
+      <p className="detailCategory ">Speed:</p>
+      <div className="powerbar">
+        <span style={{ width: `${powerStats["speed"]}%` }}>
+          {powerStats["speed"]}
+        </span>
+      </div>
+      <p className="detailCategory ">Strength:</p>
+      <div className="powerbar">
+        <span style={{ width: `${powerStats["strength"]}%` }}>
+          {powerStats["strength"]}
+        </span>
+      </div>
     </div>
   );
 };
