@@ -314,6 +314,15 @@ label {
   background-color: #00800080;
   border-radius: 10px;
 }
+
+.boom:hover {
+  transform: scale(1.4);
+}
+
+.the-end:hover {
+  transform: scale(1.4);
+}
+
 #redCorner {
   background-color: #cd252580;
   border-radius: 10px;
