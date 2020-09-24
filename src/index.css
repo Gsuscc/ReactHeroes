@@ -21,6 +21,10 @@ code {
   src: url("/Bangers.ttf");
 }
 
+img {
+  pointer-events: none;
+}
+
 .heroContainer {
   display: flex;
   flex-wrap: wrap;
@@ -68,9 +72,10 @@ code {
   margin: 25px;
 }
 
-.heroCard:hover {
+.heroContainer .heroCard:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
   transform: scale(1.5);
+  z-index: 2;
 }
 
 .statContainer {
@@ -158,4 +163,37 @@ a:hover {
   color: white;
   text-decoration: none;
   cursor: pointer;
+}
+
+.arenaContainer {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+#heroQueue {
+  padding: 50px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  min-height: 500px;
+  align-items: center;
+}
+
+.cardBox {
+  background-color: #ffffff55;
+}
+
+.teamsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.dropZone {
+  display: flex;
+  flex-direction: column;
+  min-height: 500px;
+  min-width: 300px;
+  margin: 20px;
 }
