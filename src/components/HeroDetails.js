@@ -8,6 +8,8 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { FrontPage } from "./FrontPage";
 import { BackPage } from "./BackPage";
+import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -51,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function HeroDetails(props) {
+  console.log(props);
   console.log(props.location.state.hero);
   let hero = props.location.state.hero;
   const classes = useStyles();
@@ -98,6 +101,11 @@ export default function HeroDetails(props) {
         </TabPanel>
       </div>
       <BackPage hero={hero} />
+      <Link to="/">
+        <Button variant="contained" color="primary">
+          Primary
+        </Button>
+      </Link>
     </div>
   );
 }
