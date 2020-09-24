@@ -35,9 +35,7 @@ function App() {
           <Route path="/fight">
             <FightPage />
           </Route>
-          <Route path="/hero">
-            <HeroDetails />
-          </Route>
+          <Route path="/hero" component={HeroDetails} />
         </Switch>
       </Router>
     </div>

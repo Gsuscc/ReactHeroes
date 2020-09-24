@@ -57,12 +57,10 @@ export const BackPage = (props) => {
             <Link
               to={{
                 pathname: `/hero/${hero.id}`,
-                state: {
-                  hero: hero,
-                },
+                state: { hero: hero },
               }}
             >
-              <button>Details</button>
+              <button>de</button>
             </Link>
           </div>
         </div>
