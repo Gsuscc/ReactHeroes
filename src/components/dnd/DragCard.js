@@ -3,17 +3,13 @@ import React, { useCallback } from "react";
 export default function DragCard(props) {
   const dragStart = useCallback(
     (e) => {
-      console.log("start");
-      e.dataTransfer.setData("card_id", e.target.id);
-      e.target.style.opacity = "50%";
-      props.callback(props.hero);
+      props.callback(props.hero, { setter: props.setter, value: props.value });
     },
     [props]
   );
 
   const dragOver = (e) => {
     e.stopPropagation();
-    e.target.style.opacity = "50%";
   };
 
   return (

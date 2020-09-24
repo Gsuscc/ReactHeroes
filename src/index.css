@@ -169,8 +169,8 @@ a:hover {
 }
 
 .arenaContainer {
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 250px;
+  padding-right: 250px;
 }
 
 #heroQueue {
@@ -179,7 +179,8 @@ a:hover {
   flex-direction: row;
   flex-wrap: nowrap;
   overflow-x: scroll;
-  min-height: 350px;
+  min-height: 400px;
+  max-height: 400px;
   align-items: center;
 }
 
@@ -196,10 +197,10 @@ a:hover {
 .dropZone {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 500px;
+  flex-wrap: wrap;
+  min-height: 300px;
   min-width: 300px;
+  max-width: 300px;
   margin: 20px;
 }
 
