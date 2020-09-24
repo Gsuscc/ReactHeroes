@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState, useCallback } from "react";
 import { Stat } from "./Stat";
 import { GlobalContext } from "../GlobalState";
+import { Link } from "react-router-dom";
 
 export const BackPage = (props) => {
   const hero = props.hero;
@@ -14,21 +15,23 @@ export const BackPage = (props) => {
       e.stopPropagation();
       isChecked ? setIsChecked(false) : setIsChecked(true);
       if (isInGroup()) {
-        markedCards.splice(markedCards.indexOf(hero.id), 1);
+        setMarkedCards(markedCards.filter((item) => item.id !== hero.id));
       } else {
-        markedCards.push(hero.id);
+        setMarkedCards((markedCards) => [...markedCards, hero]);
       }
-      console.log(markedCards);
     }
   });
 
   useEffect(() => handleChange(), [handleChange]);
-  const isInGroup = () => markedCards.includes(hero.id);
+  const isInGroup = () => markedCards.includes(hero);
 
   return (
     <div className="heroCard backPage isFlipped">
       <div className="cardContainer">
-        <div style={getColor()} className="name">
+        <div
+          style={getColor ? getColor() : { color: "black" }}
+          className="name"
+        >
           <div>{hero.name}</div>
         </div>
         <div>
@@ -38,14 +41,25 @@ export const BackPage = (props) => {
               return <Stat name={key} value={value} />;
             })}
           </div>
-          <div>
-            <input
-              type="checkbox"
-              id={`hero${hero.id}`}
-              onClick={handleChange}
-              checked={isInGroup()}
-            ></input>
-          </div>
+          {getColor && (
+            <div>
+              <label for={`hero${hero.id}`}>Combat</label>
+              <input
+                type="checkbox"
+                id={`hero${hero.id}`}
+                onClick={handleChange}
+                checked={isInGroup()}
+              ></input>
+              <Link
+                to={{
+                  pathname: `/hero/${hero.id}`,
+                  state: { hero: hero },
+                }}
+              >
+                <button>Details</button>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

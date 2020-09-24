@@ -87,10 +87,6 @@ export default function PersistentDrawerLeft() {
     setOpen(false);
   };
 
-  const handlClickEvent = (text) => {
-    console.log(text);
-  };
-
   return (
     <div className={classes.root}>
       <CssBaseline />

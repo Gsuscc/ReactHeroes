@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { FightPage } from "./components/FightPage";
 
 import "./App.css";
+import HeroDetails from "./components/HeroDetails";
 
 const H1 = styled.h1`
   font-family: superHeroFont;
@@ -28,12 +29,13 @@ function App() {
           <Navbar />
         </div>
         <Switch>
-          <Route path="/">
+          <Route exact path="/">
             <HeroesList />
           </Route>
           <Route path="/fight">
             <FightPage />
           </Route>
+          <Route path="/hero" component={HeroDetails} />
         </Switch>
       </Router>
     </div>
