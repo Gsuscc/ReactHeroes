@@ -66,6 +66,7 @@ code {
   border: solid black 1px;
   border-radius: 5px;
   margin: 25px;
+  max-height: 309px;
 }
 
 .heroCard:hover {
@@ -158,4 +159,35 @@ a:hover {
   color: white;
   text-decoration: none;
   cursor: pointer;
+}
+
+.makeStyles-root-11 {
+  /* margin-right: auto;
+  margin-left: auto; */
+  max-width: 700px;
+  flex-grow: 1;
+  background-color: #cac6c1b5 !important;
+  border-radius: 10px;
+  min-height: 410px;
+}
+
+.MuiTab-wrapper {
+  font-family: superHeroFont;
+  color: white;
+  font-size: large;
+}
+
+.MuiTabs-root {
+  background-color: red;
+}
+
+.heroDetailContainer {
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.detailPageCard {
+  max-height: 359px !important;
 }

@@ -6,6 +6,8 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import { FrontPage } from "./FrontPage";
+import { BackPage } from "./BackPage";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -59,47 +61,43 @@ export default function HeroDetails(props) {
   };
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static" color="default">
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          variant="scrollable"
-          scrollButtons="auto"
-          aria-label="scrollable auto tabs example"
-        >
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
-          <Tab label="Item Four" {...a11yProps(3)} />
-          <Tab label="Item Five" {...a11yProps(4)} />
-          <Tab label="Item Six" {...a11yProps(5)} />
-          <Tab label="Item Seven" {...a11yProps(6)} />
-        </Tabs>
-      </AppBar>
-      <TabPanel value={value} index={0}>
-        <Biography props={hero} />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Item Two
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Item Three
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        Item Four
-      </TabPanel>
-      <TabPanel value={value} index={4}>
-        Item Five
-      </TabPanel>
-      <TabPanel value={value} index={5}>
-        Item Six
-      </TabPanel>
-      <TabPanel value={value} index={6}>
-        Item Seven
-      </TabPanel>
+    <div className="heroDetailContainer">
+      <FrontPage hero={hero} />
+      <div className={classes.root}>
+        <AppBar position="static" color="default">
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            indicatorColor="primary"
+            textColor="primary"
+            variant="scrollable"
+            scrollButtons="auto"
+            aria-label="scrollable auto tabs example"
+          >
+            <Tab label="Biography" {...a11yProps(0)} />
+            <Tab label="Appearance" {...a11yProps(1)} />
+            <Tab label="Work" {...a11yProps(2)} />
+            <Tab label="Connections" {...a11yProps(3)} />
+            <Tab label="Power Stats" {...a11yProps(4)} />
+          </Tabs>
+        </AppBar>
+        <TabPanel value={value} index={0}>
+          <Biography props={hero} />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <Appearance props={hero} />
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <Work props={hero} />
+        </TabPanel>
+        <TabPanel value={value} index={3}>
+          <Connections props={hero} />
+        </TabPanel>
+        <TabPanel value={value} index={4}>
+          <PowerStats props={hero} />
+        </TabPanel>
+      </div>
+      <BackPage hero={hero} />
     </div>
   );
 }
@@ -115,6 +113,54 @@ const Biography = (props) => {
       <div>{biography["first-appearance"]}</div>
       <div>{biography["publisher"]}</div>
       <div>{biography["alignment"]}</div>
+    </div>
+  );
+};
+
+const Appearance = (props) => {
+  const appearance = props.props.appearance;
+  return (
+    <div>
+      <div>Gender: {appearance["gender"]}</div>
+      <div>Race: {appearance["race"]}</div>
+      <div>Height: {appearance["height"][1]}cm</div>
+      <div>Weight: {appearance["weight"][1]}kg</div>
+      <div>Hair Color: {appearance["hair-color"]}</div>
+      <div>Eye Color: {appearance["eye-color"]}</div>
+    </div>
+  );
+};
+
+const Work = (props) => {
+  const work = props.props.work;
+  return (
+    <div>
+      <div>Base Work: {work["base"]}</div>
+      <div>Occupation: {work["occupation"]}</div>
+    </div>
+  );
+};
+
+const Connections = (props) => {
+  const connections = props.props.connections;
+  return (
+    <div>
+      <div>Group Affiliation: {connections["group-affiliation"]}</div>
+      <div>Relatives: {connections["relatives"]}</div>
+    </div>
+  );
+};
+
+const PowerStats = (props) => {
+  const powerStats = props.props.powerstats;
+  return (
+    <div>
+      <div>Combat: {powerStats["combat"]}</div>
+      <div>Durability: {powerStats["durability"]}</div>
+      <div>Intelligence: {powerStats["intelligence"]}</div>
+      <div>Power: {powerStats["power"]}</div>
+      <div>Speed: {powerStats["speed"]}</div>
+      <div>Strength: {powerStats["strength"]}</div>
     </div>
   );
 };

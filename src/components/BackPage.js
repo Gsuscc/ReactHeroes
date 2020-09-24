@@ -37,7 +37,10 @@ export const BackPage = (props) => {
   return (
     <div className="heroCard backPage isFlipped">
       <div className="cardContainer">
-        <div style={getColor()} className="name">
+        <div
+          style={getColor ? getColor() : { color: "black" }}
+          className="name"
+        >
           <div>{hero.name}</div>
         </div>
         <div>
@@ -47,22 +50,24 @@ export const BackPage = (props) => {
               return <Stat name={key} value={value} />;
             })}
           </div>
-          <div>
-            <input
-              type="checkbox"
-              id={`hero${hero.id}`}
-              onClick={handleChange}
-              checked={isInGroup()}
-            ></input>
-            <Link
-              to={{
-                pathname: `/hero/${hero.id}`,
-                state: { hero: hero },
-              }}
-            >
-              <button>de</button>
-            </Link>
-          </div>
+          {getColor && (
+            <div>
+              <input
+                type="checkbox"
+                id={`hero${hero.id}`}
+                onClick={handleChange}
+                checked={isInGroup()}
+              ></input>
+              <Link
+                to={{
+                  pathname: `/hero/${hero.id}`,
+                  state: { hero: hero },
+                }}
+              >
+                <button>de</button>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>
