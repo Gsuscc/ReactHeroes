@@ -13,7 +13,12 @@ export const FrontPage = (props) => {
         >
           <div>{hero.name}</div>
         </div>
-        <img className="heroImg" src={hero.image.url} alt="img"></img>
+        <img
+          className="heroImg"
+          src={hero.image.url}
+          alt="img"
+          draggable="false"
+        ></img>
       </div>
     </div>
   );
