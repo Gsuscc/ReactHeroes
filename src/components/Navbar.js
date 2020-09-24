@@ -1,5 +1,7 @@
 import React from "react";
 import clsx from "clsx";
+import woosh from "../sounds/woosh.mp3";
+import useSound from "use-sound";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -87,6 +89,7 @@ export default function PersistentDrawerLeft() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [play] = useSound(woosh);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -114,7 +117,7 @@ export default function PersistentDrawerLeft() {
             edge="start"
             className={clsx(classes.menuButton, open && classes.hide)}
           >
-            <MenuIcon />
+            <MenuIcon onClick={play} />
             <Typography variant="h6" noWrap>
               Menu
             </Typography>
@@ -133,7 +136,7 @@ export default function PersistentDrawerLeft() {
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
+              <ChevronLeftIcon onClick={play} />
             ) : (
               <ChevronRightIcon />
             )}
