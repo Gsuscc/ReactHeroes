@@ -64,48 +64,52 @@ export default function HeroDetails(props) {
   };
 
   return (
-    <div className="heroDetailContainer">
-      <FrontPage hero={hero} />
-      <div className={classes.root}>
-        <AppBar position="static" color="default">
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            indicatorColor="primary"
-            textColor="primary"
-            variant="scrollable"
-            scrollButtons="auto"
-            aria-label="scrollable auto tabs example"
-          >
-            <Tab label="Biography" {...a11yProps(0)} />
-            <Tab label="Appearance" {...a11yProps(1)} />
-            <Tab label="Work" {...a11yProps(2)} />
-            <Tab label="Connections" {...a11yProps(3)} />
-            <Tab label="Power Stats" {...a11yProps(4)} />
-          </Tabs>
-        </AppBar>
-        <TabPanel value={value} index={0}>
-          <Biography props={hero} />
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <Appearance props={hero} />
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          <Work props={hero} />
-        </TabPanel>
-        <TabPanel value={value} index={3}>
-          <Connections props={hero} />
-        </TabPanel>
-        <TabPanel value={value} index={4}>
-          <PowerStats props={hero} />
-        </TabPanel>
+    <div>
+      <div className="heroDetailContainer">
+        <FrontPage hero={hero} />
+        <div className={classes.root}>
+          <AppBar position="static" color="default">
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              indicatorColor="primary"
+              textColor="primary"
+              variant="scrollable"
+              scrollButtons="auto"
+              aria-label="scrollable auto tabs example"
+            >
+              <Tab label="Biography" {...a11yProps(0)} />
+              <Tab label="Appearance" {...a11yProps(1)} />
+              <Tab label="Work" {...a11yProps(2)} />
+              <Tab label="Connections" {...a11yProps(3)} />
+              <Tab label="Power Stats" {...a11yProps(4)} />
+            </Tabs>
+          </AppBar>
+          <TabPanel value={value} index={0}>
+            <Biography props={hero} />
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            <Appearance props={hero} />
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+            <Work props={hero} />
+          </TabPanel>
+          <TabPanel value={value} index={3}>
+            <Connections props={hero} />
+          </TabPanel>
+          <TabPanel value={value} index={4}>
+            <PowerStats props={hero} />
+          </TabPanel>
+        </div>
+        <BackPage hero={hero} />
       </div>
-      <BackPage hero={hero} />
-      <Link to="/">
-        <Button variant="contained" color="primary">
-          Primary
-        </Button>
-      </Link>
+      <div>
+        <Link to="/">
+          <Button variant="contained" color="primary">
+            Homepage
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 }
