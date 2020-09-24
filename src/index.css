@@ -70,9 +70,14 @@ code {
   max-height: 309px;
 }
 
-.heroContainer .heroCard:hover {
+.heroCard:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
   transform: scale(1.5);
+  z-index: 2;
+}
+.arenaContainer .heroCard:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+  transform: none;
   z-index: 2;
 }
 

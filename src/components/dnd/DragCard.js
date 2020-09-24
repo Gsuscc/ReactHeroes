@@ -4,11 +4,8 @@ export default function DragCard(props) {
   const dragStart = useCallback(
     (e) => {
       console.log("start");
-      const target = e.target;
-      e.dataTransfer.setData("card_id", target.id);
-      setTimeout(() => {
-        target.style.display = "none";
-      });
+      e.dataTransfer.setData("card_id", e.target.id);
+      e.target.style.opacity = "50%";
       props.callback(props.hero);
     },
     [props]
@@ -16,6 +13,7 @@ export default function DragCard(props) {
 
   const dragOver = (e) => {
     e.stopPropagation();
+    e.target.style.opacity = "50%";
   };
 
   return (

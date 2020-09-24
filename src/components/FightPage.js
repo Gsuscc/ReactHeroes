@@ -39,7 +39,11 @@ export const FightPage = () => {
     [draggedHero]
   );
 
-  if (markedCards.length <= 0) {
+  if (
+    markedCards.length <= 0 &&
+    greenCorner.length <= 0 &&
+    redCorner.length <= 0
+  ) {
     return <div>Arena is Empty</div>;
   }
 

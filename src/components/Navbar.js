@@ -139,6 +139,11 @@ export default function PersistentDrawerLeft() {
               </ListItem>
             </Link>
           ))}
+          <Link key={`navbar-home`} to={`/`}>
+            <ListItem button className="navbar-item" key={"home"}>
+              <ListItemText primary={"home"} />
+            </ListItem>
+          </Link>
         </List>
       </Drawer>
       <main
