@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 export default function DragCard(props) {
-  const dragStart = (e) => {
-    const target = e.target;
-    e.dataTransfer.setData("card_id", target.id);
-    setTimeout(() => {
-      target.style.display = "none";
-    });
-  };
+  const dragStart = useCallback(
+    (e) => {
+      console.log("start");
+      const target = e.target;
+      e.dataTransfer.setData("card_id", target.id);
+      setTimeout(() => {
+        target.style.display = "none";
+      });
+      props.callback(props.hero);
+    },
+    [props]
+  );
 
   const dragOver = (e) => {
     e.stopPropagation();

@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 export default function DropBoard(props) {
-  const drop = (e) => {
-    e.preventDefault();
-    const card_id = e.dataTransfer.getData("card_id");
-    const card = document.getElementById(card_id);
-    card.style.display = "block";
-    e.target.appendChild(card);
-  };
+  const drop = useCallback(
+    (e) => {
+      e.preventDefault();
+      const card_id = e.dataTransfer.getData("card_id");
+      const card = document.getElementById(card_id);
+      card.style.display = "block";
+      props.callbackDrop(props.setter);
+    },
+    [props]
+  );
+  const leave = useCallback(
+    (e) => {
+      console.log("leave");
+      props.callbackLeave(props.setter, props.value);
+    },
+    [props]
+  );
 
   const dragOver = (e) => {
     e.preventDefault();
@@ -19,6 +29,7 @@ export default function DropBoard(props) {
       className={props.className}
       onDrop={drop}
       onDragOver={dragOver}
+      onDragLeave={leave}
     >
       {props.children}
     </div>
