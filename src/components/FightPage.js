@@ -72,6 +72,12 @@ export const FightPage = () => {
     return <div>Arena is Empty</div>;
   }
 
+  const clearArena = () => {
+    setGreenCorner((greenCorner) => []);
+    setRedCorner((redCorner) => []);
+    setMarkedCards((markedCards) => []);
+  };
+
   return (
     <div className="arenaContainer">
       <DropBoard
@@ -95,6 +101,14 @@ export const FightPage = () => {
           );
         })}
       </DropBoard>
+      <div>
+        <img
+          className="the-end"
+          onClick={clearArena}
+          src="./the-end.png"
+          alt="the-end"
+        ></img>
+      </div>
       <div className="teamsContainer">
         <DropBoard
           id="greenCorner"
@@ -122,6 +136,7 @@ export const FightPage = () => {
             src={"./fightPngs/boom.png"}
             className="boom"
             onClick={fight}
+            alt="boom"
           ></img>
         </div>
         <DropBoard

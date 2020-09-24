@@ -181,6 +181,7 @@ a:hover {
   overflow-x: scroll;
   min-height: 350px;
   align-items: center;
+  border-radius: 10px;
 }
 
 .cardBox {
@@ -313,7 +314,14 @@ label {
 }
 #greenCorner {
   background-color: #00800080;
+  border-radius: 10px;
 }
 #redCorner {
   background-color: #cd252580;
+  border-radius: 10px;
+}
+
+.the-end {
+  height: 80px;
+  margin-top: 20px;
 }
