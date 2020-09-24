@@ -3,6 +3,7 @@ import { GlobalContext } from "../GlobalState";
 import { HeroCard } from "./HeroCard";
 import DragCard from "./dnd/DragCard";
 import DropBoard from "./dnd/DropBoard";
+import Draggable from "./dnd/Draggable";
 
 export const FightPage = () => {
   const { marker, greenTeam, redTeam } = useContext(GlobalContext);
@@ -26,9 +27,9 @@ export const FightPage = () => {
       <DropBoard id="heroQueue" className="cardBox">
         {markedCards.map((hero) => {
           return (
-            <DragCard id={`card-${hero.id}`} draggable="true">
+            <Draggable id={`card-${hero.id}`} draggable="true">
               <HeroCard hero={hero} key={hero.id} />
-            </DragCard>
+            </Draggable>
           );
         })}
       </DropBoard>
