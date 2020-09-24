@@ -53,8 +53,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function HeroDetails(props) {
-  console.log(props);
-  console.log(props.location.state.hero);
   let hero = props.location.state.hero;
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
@@ -116,7 +114,6 @@ export default function HeroDetails(props) {
 
 const Biography = (props) => {
   const biography = props.props.biography;
-  console.log(props);
   return (
     <div className="superHeroDetailedContainer">
       <p className="detailCategory">Full Name:</p>

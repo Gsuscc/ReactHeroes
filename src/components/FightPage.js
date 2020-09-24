@@ -17,7 +17,6 @@ export const FightPage = () => {
   const leaveFrom = useRef(null);
 
   const onDrop = useCallback(() => {
-    console.log("drag", validTarget.current);
     if (validTarget.current) {
       validTarget.current.setter((value) => [...value, draggedHero.current]);
       leaveFrom.current.setter(
@@ -38,8 +37,6 @@ export const FightPage = () => {
 
   const onLeave = useCallback(() => {
     setTimeout(() => (validTarget.current = null), 20);
-
-    console.log("leave");
   }, [validTarget]);
 
   const onDrag = useCallback(
@@ -61,8 +58,6 @@ export const FightPage = () => {
     let redHero = redCorner[0];
     let greenHero = greenCorner[0];
     if (!redHero || !greenHero) return;
-    console.log(powerCalculator(redHero.powerstats));
-    console.log(powerCalculator(greenHero.powerstats));
     if (
       powerCalculator(redHero.powerstats) <=
       powerCalculator(greenHero.powerstats)
