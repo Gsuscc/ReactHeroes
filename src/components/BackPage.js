@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState, useCallback } from "react";
 import { Stat } from "./Stat";
 import { GlobalContext } from "../GlobalState";
+import { Link } from "react-router-dom";
 
 export const BackPage = (props) => {
   const hero = props.hero;
@@ -8,6 +9,7 @@ export const BackPage = (props) => {
   const { marker } = useContext(GlobalContext);
   const [markedCards, setMarkedCards] = marker;
   const [isChecked, setIsChecked] = useState(false);
+  const [shouldShowDetails, setShouldShowDetails] = useState(false);
 
   const handleChange = useCallback((e) => {
     if (e) {
@@ -21,9 +23,16 @@ export const BackPage = (props) => {
       console.log(markedCards);
     }
   });
+  const handleShouldShowDetails = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShouldShowDetails(true);
+  };
 
   useEffect(() => handleChange(), [handleChange]);
   const isInGroup = () => markedCards.includes(hero.id);
+
+  console.log(shouldShowDetails);
 
   return (
     <div className="heroCard backPage isFlipped">
@@ -45,6 +54,16 @@ export const BackPage = (props) => {
               onClick={handleChange}
               checked={isInGroup()}
             ></input>
+            <Link
+              to={{
+                pathname: `/hero/${hero.id}`,
+                state: {
+                  hero: hero,
+                },
+              }}
+            >
+              <button>Details</button>
+            </Link>
           </div>
         </div>
       </div>

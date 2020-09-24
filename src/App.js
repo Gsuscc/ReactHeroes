@@ -35,10 +35,9 @@ function App() {
           <Route path="/fight">
             <FightPage />
           </Route>
-          <Route
-            path="/hero"
-            render={(props) => <HeroDetails {...props} />}
-          ></Route>
+          <Route path="/hero">
+            <HeroDetails />
+          </Route>
         </Switch>
       </Router>
     </div>
