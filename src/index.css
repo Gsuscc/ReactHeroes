@@ -191,3 +191,14 @@ a:hover {
 .detailPageCard {
   max-height: 359px !important;
 }
+
+.detailCategory {
+  color: #3477b0;
+}
+
+.superHeroDetailedContainer {
+  display: grid !important;
+  grid-template-columns: 30% 70% !important;
+  justify-items: center;
+  align-items: center;
+}

@@ -106,13 +106,19 @@ const Biography = (props) => {
   const biography = props.props.biography;
   console.log(props);
   return (
-    <div>
+    <div className="superHeroDetailedContainer">
+      <p className="detailCategory">Full Name:</p>
       <div>{biography["full-name"]}</div>
+      <p className="detailCategory">Alter Ego(s):</p>
       <div>{biography["alter-egos"]}</div>
+      <p className="detailCategory">Place Of Birth:</p>
       <div>{biography["place-of-birth"]}</div>
+      <p className="detailCategory">First Appearance:</p>
       <div>{biography["first-appearance"]}</div>
-      <div>{biography["publisher"]}</div>
+      <p className="detailCategory">Alignment:</p>
       <div>{biography["alignment"]}</div>
+      <p className="detailCategory">Publisher:</p>
+      <div>{biography["publisher"]}</div>
     </div>
   );
 };
@@ -120,13 +126,19 @@ const Biography = (props) => {
 const Appearance = (props) => {
   const appearance = props.props.appearance;
   return (
-    <div>
-      <div>Gender: {appearance["gender"]}</div>
-      <div>Race: {appearance["race"]}</div>
-      <div>Height: {appearance["height"][1]}cm</div>
-      <div>Weight: {appearance["weight"][1]}kg</div>
-      <div>Hair Color: {appearance["hair-color"]}</div>
-      <div>Eye Color: {appearance["eye-color"]}</div>
+    <div className="superHeroDetailedContainer">
+      <p className="detailCategory">Gender:</p>
+      <div>{appearance["gender"]}</div>
+      <p className="detailCategory">Race:</p>
+      <div>{appearance["race"]}</div>
+      <p className="detailCategory">Height:</p>
+      <div>{appearance["height"][1]}</div>
+      <p className="detailCategory">Weight:</p>
+      <div>{appearance["weight"][1]}</div>
+      <p className="detailCategory">Hair Color:</p>
+      <div>{appearance["hair-color"]}</div>
+      <p className="detailCategory">Eye Color:</p>
+      <div>{appearance["eye-color"]}</div>
     </div>
   );
 };
@@ -134,9 +146,11 @@ const Appearance = (props) => {
 const Work = (props) => {
   const work = props.props.work;
   return (
-    <div>
-      <div>Base Work: {work["base"]}</div>
-      <div>Occupation: {work["occupation"]}</div>
+    <div className="superHeroDetailedContainer">
+      <p className="detailCategory">Base Work:</p>
+      <div>{work["base"]}</div>
+      <p className="detailCategory">Occupation:</p>
+      <div>{work["occupation"]}</div>
     </div>
   );
 };
@@ -144,9 +158,11 @@ const Work = (props) => {
 const Connections = (props) => {
   const connections = props.props.connections;
   return (
-    <div>
-      <div>Group Affiliation: {connections["group-affiliation"]}</div>
-      <div>Relatives: {connections["relatives"]}</div>
+    <div className="superHeroDetailedContainer">
+      <p className="detailCategory">Group Affiliation:</p>
+      <div>{connections["group-affiliation"]}</div>
+      <p className="detailCategory">Relatives:</p>
+      <div>{connections["relatives"]}</div>
     </div>
   );
 };
@@ -154,13 +170,19 @@ const Connections = (props) => {
 const PowerStats = (props) => {
   const powerStats = props.props.powerstats;
   return (
-    <div>
-      <div>Combat: {powerStats["combat"]}</div>
-      <div>Durability: {powerStats["durability"]}</div>
-      <div>Intelligence: {powerStats["intelligence"]}</div>
-      <div>Power: {powerStats["power"]}</div>
-      <div>Speed: {powerStats["speed"]}</div>
-      <div>Strength: {powerStats["strength"]}</div>
+    <div className="superHeroDetailedContainer">
+      <p className="detailCategory">Combat:</p>
+      <div>{powerStats["combat"]}</div>
+      <p className="detailCategory">Durability:</p>
+      <div>{powerStats["durability"]}</div>
+      <p className="detailCategory">Intelligence:</p>
+      <div>{powerStats["intelligence"]}</div>
+      <p className="detailCategory">Power:</p>
+      <div>{powerStats["power"]}</div>
+      <p className="detailCategory">Speed:</p>
+      <div>{powerStats["speed"]}</div>
+      <p className="detailCategory">Strength:</p>
+      <div>{powerStats["strength"]}</div>
     </div>
   );
 };
