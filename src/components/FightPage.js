@@ -49,23 +49,35 @@ export const FightPage = () => {
 
   const powerCalculator = (powerStats) => {
     return Object.keys(powerStats).reduce((sum, key) => {
-      return sum + parseInt(powerStats[key] || 0);
+      return (
+        sum + parseInt(powerStats[key] === "null" ? 0 : powerStats[key] || 0)
+      );
     }, 0);
   };
 
-  const fight = () => {
+  const fight = useCallback(() => {
+    if (redCorner.length <= 0 || greenCorner.length <= 0) {
+      return;
+    }
     play();
     let redHero = redCorner[0];
     let greenHero = greenCorner[0];
-    if (!redHero || !greenHero) return;
+    console.log(redCorner[0], powerCalculator(redHero.powerstats));
+    console.log(greenCorner[0], powerCalculator(greenHero.powerstats));
     if (
       powerCalculator(redHero.powerstats) <=
       powerCalculator(greenHero.powerstats)
     ) {
-      setRedCorner((redCorner) => []);
+      setRedCorner(redCorner.filter((x) => x.id !== redHero.id));
     } else {
-      setGreenCorner((greenCorner) => []);
+      setGreenCorner(greenCorner.filter((x) => x.id !== greenHero.id));
     }
+  }, [greenCorner, redCorner, play, setGreenCorner, setRedCorner]);
+
+  const clearArena = () => {
+    setGreenCorner((greenCorner) => []);
+    setRedCorner((redCorner) => []);
+    setMarkedCards((markedCards) => []);
   };
 
   if (
@@ -75,12 +87,6 @@ export const FightPage = () => {
   ) {
     return <div className="heroFont big-font">Arena is Empty</div>;
   }
-
-  const clearArena = () => {
-    setGreenCorner((greenCorner) => []);
-    setRedCorner((redCorner) => []);
-    setMarkedCards((markedCards) => []);
-  };
 
   return (
     <div className="arenaContainer">
