@@ -9,7 +9,6 @@ export const BackPage = (props) => {
   const { marker } = useContext(GlobalContext);
   const [markedCards, setMarkedCards] = marker;
   const [isChecked, setIsChecked] = useState(false);
-  const [shouldShowDetails, setShouldShowDetails] = useState(false);
 
   const handleChange = useCallback((e) => {
     if (e) {
@@ -20,19 +19,11 @@ export const BackPage = (props) => {
       } else {
         setMarkedCards((markedCards) => [...markedCards, hero]);
       }
-      console.log(markedCards);
     }
   });
-  const handleShouldShowDetails = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setShouldShowDetails(true);
-  };
 
   useEffect(() => handleChange(), [handleChange]);
   const isInGroup = () => markedCards.includes(hero);
-
-  console.log(shouldShowDetails);
 
   return (
     <div className="heroCard backPage isFlipped">
