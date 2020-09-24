@@ -16,9 +16,9 @@ export const BackPage = (props) => {
       e.stopPropagation();
       isChecked ? setIsChecked(false) : setIsChecked(true);
       if (isInGroup()) {
-        markedCards.splice(markedCards.indexOf(hero.id), 1);
+        setMarkedCards(markedCards.filter((item) => item.id !== hero.id));
       } else {
-        markedCards.push(hero.id);
+        setMarkedCards((markedCards) => [...markedCards, hero]);
       }
       console.log(markedCards);
     }
@@ -30,7 +30,7 @@ export const BackPage = (props) => {
   };
 
   useEffect(() => handleChange(), [handleChange]);
-  const isInGroup = () => markedCards.includes(hero.id);
+  const isInGroup = () => markedCards.includes(hero);
 
   console.log(shouldShowDetails);
 
