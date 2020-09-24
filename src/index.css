@@ -312,6 +312,9 @@ label {
   margin-top: 220px;
   width: 150px;
 }
+.boom:hover {
+  transform: scale(1.4);
+}
 #greenCorner {
   background-color: #00800080;
   border-radius: 10px;
@@ -324,4 +327,7 @@ label {
 .the-end {
   height: 80px;
   margin-top: 20px;
+}
+.the-end:hover {
+  transform: scale(1.4);
 }
