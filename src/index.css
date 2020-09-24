@@ -70,7 +70,7 @@ code {
   background: white;
   border: solid black 1px;
   border-radius: 5px;
-  margin: 25px;
+  /* margin: 25px; */
   max-width: 162px;
   max-height: 309px;
 }
@@ -184,8 +184,8 @@ a:hover {
   flex-direction: row;
   flex-wrap: nowrap;
   overflow-x: scroll;
-  min-height: 400px;
-  max-height: 400px;
+  min-height: 350px;
+  max-height: 350px;
   align-items: center;
   border-radius: 10px;
 }
@@ -360,4 +360,8 @@ label {
 .the-end {
   height: 80px;
   margin-top: 20px;
+}
+
+.card-margin {
+  margin: 25px;
 }

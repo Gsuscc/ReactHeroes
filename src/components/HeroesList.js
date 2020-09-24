@@ -33,7 +33,11 @@ export const HeroesList = (props) => {
 
   const loadCardData = useCallback(
     (hero) => {
-      let newCard = <HeroCard hero={hero} key={hero.id} />;
+      let newCard = (
+        <div className="card-margin">
+          <HeroCard hero={hero} key={hero.id} />
+        </div>
+      );
       if (parseInt(hero.id) === lastId) {
         finishLoading();
       }

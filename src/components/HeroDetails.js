@@ -64,7 +64,10 @@ export default function HeroDetails(props) {
   return (
     <div>
       <div className="heroDetailContainer">
-        <FrontPage hero={hero} />
+        <div className="card-margin">
+          <FrontPage hero={hero} />
+        </div>
+
         <div className={classes.root}>
           <AppBar position="static" color="default">
             <Tabs
@@ -99,7 +102,9 @@ export default function HeroDetails(props) {
             <PowerStats props={hero} />
           </TabPanel>
         </div>
-        <BackPage hero={hero} />
+        <div className="card-margin">
+          <BackPage hero={hero} />
+        </div>
       </div>
       <div>
         <Link to="/">
