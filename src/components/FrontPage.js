@@ -10,7 +10,12 @@ export const FrontPage = (props) => {
         <div style={getColor()} className="name">
           <div>{hero.name}</div>
         </div>
-        <img className="heroImg" src={hero.image.url} alt="img"></img>
+        <img
+          className="heroImg"
+          src={hero.image.url}
+          alt="img"
+          draggable="false"
+        ></img>
       </div>
     </div>
   );

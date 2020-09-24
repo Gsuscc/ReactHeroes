@@ -21,10 +21,6 @@ code {
   src: url("/Bangers.ttf");
 }
 
-img {
-  pointer-events: none;
-}
-
 .heroContainer {
   display: flex;
   flex-wrap: wrap;
@@ -70,6 +66,7 @@ img {
   border: solid black 1px;
   border-radius: 5px;
   margin: 25px;
+  max-width: 162px;
 }
 
 .heroContainer .heroCard:hover {
@@ -171,12 +168,12 @@ a:hover {
 }
 
 #heroQueue {
-  padding: 50px;
+  padding: 5px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   overflow-x: scroll;
-  min-height: 500px;
+  min-height: 350px;
   align-items: center;
 }
 
@@ -193,6 +190,8 @@ a:hover {
 .dropZone {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   min-height: 500px;
   min-width: 300px;
   margin: 20px;
