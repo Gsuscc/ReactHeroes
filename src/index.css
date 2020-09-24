@@ -307,3 +307,7 @@ label {
 .MuiButtonBase-root {
   justify-content: center !important;
 }
+.boom {
+  margin-top: 220px;
+  width: 150px;
+}

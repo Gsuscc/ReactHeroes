@@ -38,6 +38,24 @@ export const FightPage = () => {
     },
     [draggedHero]
   );
+  const powerCalculator = (powerStats) => {
+    return Object.keys(powerStats).reduce((sum, key) => {
+      return sum + parseInt(powerStats[key] || 0);
+    }, 0);
+  };
+  const fight = () => {
+    let redHero = redCorner[0];
+    let greenHero = greenCorner[0];
+    if (!redHero || !greenHero) return;
+    if (
+      powerCalculator(redHero.powerstats) <=
+      powerCalculator(greenHero.powerstats)
+    ) {
+      setRedCorner((redCorner) => []);
+    } else {
+      setGreenCorner((greenCorner) => []);
+    }
+  };
 
   if (
     markedCards.length <= 0 &&
@@ -92,6 +110,13 @@ export const FightPage = () => {
             );
           })}
         </DropBoard>
+        <div>
+          <img
+            src={"./fightPngs/boom.png"}
+            className="boom"
+            onClick={fight}
+          ></img>
+        </div>
         <DropBoard
           id="redCorner"
           className="dropZone cardBox"
