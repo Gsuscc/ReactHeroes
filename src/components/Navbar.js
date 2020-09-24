@@ -133,7 +133,7 @@ export default function PersistentDrawerLeft() {
 
         <List>
           {["Search", "Publisher", "Alignment", "Fight"].map((text, index) => (
-            <Link to={`/${text.toLowerCase()}`}>
+            <Link key={`navbar-${text}`} to={`/${text.toLowerCase()}`}>
               <ListItem button className="navbar-item" key={text}>
                 <ListItemText primary={text} />
               </ListItem>

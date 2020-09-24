@@ -61,7 +61,7 @@ export const HeroesList = (props) => {
         })}
       </div>
       <div
-        classname="scrollTrigger"
+        className="scrollTrigger"
         ref={lastCard}
         id="trigger"
         key="trigger"

@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { FrontPage } from "./FrontPage";
 import { BackPage } from "./BackPage";
 import useSound from "use-sound";
-import slap from "../sounds/swoosh.mp3";
+import swoosh from "../sounds/swoosh.mp3";
 
 export const HeroCard = (props) => {
   const hero = props.hero;
   const [isFlipped, setIsFlipped] = useState(false);
-  const [play] = useSound(slap);
+  const [play] = useSound(swoosh);
 
   const getColor = () => {
     if (hero.biography.alignment === "good") return { color: "darkgreen" };
