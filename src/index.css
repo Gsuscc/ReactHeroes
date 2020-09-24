@@ -205,8 +205,6 @@ a:hover {
 }
 
 .makeStyles-root-11 {
-  /* margin-right: auto;
-  margin-left: auto; */
   max-width: 700px;
   flex-grow: 1;
   background-color: #cac6c1b5 !important;
@@ -247,7 +245,7 @@ a:hover {
 }
 .powerbar {
   width: 300px;
-  height: 20px; /* Can be anything */
+  height: 20px;
   position: relative;
   background: #555;
   -moz-border-radius: 25px;
@@ -312,9 +310,6 @@ label {
   margin-top: 220px;
   width: 150px;
 }
-.boom:hover {
-  transform: scale(1.4);
-}
 #greenCorner {
   background-color: #00800080;
   border-radius: 10px;
@@ -327,7 +322,4 @@ label {
 .the-end {
   height: 80px;
   margin-top: 20px;
-}
-.the-end:hover {
-  transform: scale(1.4);
 }

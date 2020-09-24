@@ -8,5 +8,6 @@ export default async function cardFetch(id, callback) {
     .then((response) => {
       let hero = response.data;
       if (callback) callback(hero);
-    });
+    })
+    .catch((err) => console.log(err));
 }
