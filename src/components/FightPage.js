@@ -3,8 +3,11 @@ import { GlobalContext } from "../GlobalState";
 import { HeroCard } from "./HeroCard";
 import DragCard from "./dnd/DragCard";
 import DropBoard from "./dnd/DropBoard";
+import useSound from "use-sound";
+import slap from "../sounds/slap.mp3";
 
 export const FightPage = () => {
+  const [play] = useSound(slap, { volume: 0.5 });
   const { marker, greenTeam, redTeam } = useContext(GlobalContext);
   const [markedCards, setMarkedCards] = marker;
   const [greenCorner, setGreenCorner] = greenTeam;
@@ -43,10 +46,14 @@ export const FightPage = () => {
       return sum + parseInt(powerStats[key] || 0);
     }, 0);
   };
+
   const fight = () => {
+    play();
     let redHero = redCorner[0];
     let greenHero = greenCorner[0];
     if (!redHero || !greenHero) return;
+    console.log(powerCalculator(redHero.powerstats));
+    console.log(powerCalculator(greenHero.powerstats));
     if (
       powerCalculator(redHero.powerstats) <=
       powerCalculator(greenHero.powerstats)

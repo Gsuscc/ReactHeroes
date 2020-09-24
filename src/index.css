@@ -311,3 +311,9 @@ label {
   margin-top: 220px;
   width: 150px;
 }
+#greenCorner {
+  background-color: #00800080;
+}
+#redCorner {
+  background-color: #cd252580;
+}
