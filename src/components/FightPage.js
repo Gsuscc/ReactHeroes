@@ -1,4 +1,4 @@
-import React, { useContext, useCallback, useRef, useState } from "react";
+import React, { useContext, useCallback, useRef } from "react";
 import { GlobalContext } from "../GlobalState";
 import { HeroCard } from "./HeroCard";
 import DragCard from "./dnd/DragCard";
@@ -24,11 +24,9 @@ export const FightPage = () => {
         leaveFrom.current.value.filter((x) => x.id !== draggedHero.current.id)
       );
     }
-    let overlays = document.querySelectorAll(".overlay");
-    overlays.forEach((item) => (item.style.zIndex = "-20"));
   }, [draggedHero, validTarget, leaveFrom]);
 
-  const onEnter = useCallback(
+  const onOver = useCallback(
     (setter, value) => {
       validTarget.current = {
         setter: setter,
@@ -51,6 +49,7 @@ export const FightPage = () => {
     },
     [draggedHero, leaveFrom]
   );
+
   const powerCalculator = (powerStats) => {
     return Object.keys(powerStats).reduce((sum, key) => {
       return sum + parseInt(powerStats[key] || 0);
@@ -95,7 +94,7 @@ export const FightPage = () => {
         className="cardBox"
         callbackDrop={onDrop}
         callbackLeave={onLeave}
-        callbackEnter={onEnter}
+        callbackOver={onOver}
         setter={setMarkedCards}
         value={markedCards}
       >
@@ -130,7 +129,7 @@ export const FightPage = () => {
           className="dropZone cardBox"
           callbackDrop={onDrop}
           callbackLeave={onLeave}
-          callbackEnter={onEnter}
+          callbackOver={onOver}
           setter={setGreenCorner}
           value={greenCorner}
         >
@@ -164,7 +163,7 @@ export const FightPage = () => {
           className="dropZone cardBox"
           callbackDrop={onDrop}
           callbackLeave={onLeave}
-          callbackEnter={onEnter}
+          callbackOver={onOver}
           setter={setRedCorner}
           value={redCorner}
         >

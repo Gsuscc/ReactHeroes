@@ -219,8 +219,9 @@ a:hover {
   left: 0;
   right: 0;
   display: block;
-  z-index: -1;
+  z-index: -20;
   background: transparent;
+  visibility: hidden;
 }
 
 .come-forward {

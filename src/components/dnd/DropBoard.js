@@ -1,33 +1,13 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 
 export default function DropBoard(props) {
-  const drop = useCallback(
-    (e) => {
-      console.log("drop");
-      props.callbackDrop(props.setter);
-      e.preventDefault();
-      let overlays = document.querySelectorAll(".overlay");
-      overlays.forEach((item) => (item.style.zIndex = "-20"));
-    },
-    [props]
-  );
-  const leave = useCallback(
-    (e) => {
-      props.callbackLeave();
-    },
-    [props]
-  );
+  const leave = useCallback(() => {
+    props.callbackLeave();
+  }, [props]);
 
-  const enter = useCallback(
-    (e) => {
-      props.callbackEnter(props.setter, props.value);
-    },
-    [props]
-  );
-
-  const dragOver = (e) => {
-    e.preventDefault();
-  };
+  const over = useCallback(() => {
+    props.callbackOver(props.setter, props.value);
+  }, [props]);
 
   return (
     <div className="relative">
@@ -37,10 +17,9 @@ export default function DropBoard(props) {
 
       <div
         className="overlay"
-        onDrop={drop}
-        onDragOver={enter}
+        onDragOver={over}
         onDragLeave={leave}
-        onDragEnter={enter}
+        onDragEnter={over}
       ></div>
     </div>
   );
