@@ -70,7 +70,6 @@ code {
   background: white;
   border: solid black 1px;
   border-radius: 5px;
-  /* margin: 25px; */
   max-width: 162px;
   max-height: 309px;
 }
@@ -84,6 +83,10 @@ code {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
   transform: none;
   z-index: 2;
+}
+
+.arenaContainer .heroCard {
+  -webkit-animation: none;
 }
 
 .statContainer {
