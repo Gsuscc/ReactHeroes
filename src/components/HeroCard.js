@@ -7,7 +7,7 @@ import swoosh from "../sounds/swoosh.mp3";
 export const HeroCard = (props) => {
   const hero = props.hero;
   const [isFlipped, setIsFlipped] = useState(false);
-  const [play] = useSound(swoosh);
+  const [play] = useSound(swoosh, { volume: 0.2 });
 
   const getColor = () => {
     if (hero.biography.alignment === "good") return { color: "darkgreen" };

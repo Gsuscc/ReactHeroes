@@ -89,7 +89,7 @@ export default function PersistentDrawerLeft() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [play] = useSound(woosh);
+  const [play] = useSound(woosh, { volume: 0.2 });
 
   const handleDrawerOpen = () => {
     setOpen(true);
