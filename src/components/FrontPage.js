@@ -7,7 +7,10 @@ export const FrontPage = (props) => {
   return (
     <div className="heroCard frontPage">
       <div className="cardContainer">
-        <div style={getColor()} className="name">
+        <div
+          style={getColor ? getColor() : { color: "black" }}
+          className="name"
+        >
           <div>{hero.name}</div>
         </div>
         <img
