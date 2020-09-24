@@ -14,6 +14,15 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Link } from "react-router-dom";
+import SvgIcon from "@material-ui/core/SvgIcon";
+
+function HomeIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+    </SvgIcon>
+  );
+}
 
 const drawerWidth = 240;
 
@@ -132,13 +141,22 @@ export default function PersistentDrawerLeft() {
         </div>
 
         <List>
-          {["Search", "Publisher", "Alignment", "Fight"].map((text, index) => (
-            <Link key={`navbar-${text}`} to={`/${text.toLowerCase()}`}>
-              <ListItem button className="navbar-item" key={text}>
-                <ListItemText primary={text} />
-              </ListItem>
-            </Link>
-          ))}
+          {["Search", "Publisher", "Alignment", "Fight", "home"].map(
+            (text, index) =>
+              text === "home" ? (
+                <Link key={`navbar-${text}`} to={`/`}>
+                  <ListItem button className="navbar-item" key={text}>
+                    <HomeIcon style={{ fontSize: 40 }} />
+                  </ListItem>
+                </Link>
+              ) : (
+                <Link key={`navbar-${text}`} to={`/${text.toLowerCase()}`}>
+                  <ListItem button className="navbar-item" key={text}>
+                    <ListItemText primary={text} />
+                  </ListItem>
+                </Link>
+              )
+          )}
         </List>
       </Drawer>
       <main

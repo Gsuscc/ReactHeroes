@@ -262,3 +262,6 @@ a:hover {
 label {
   font-size: large;
 }
+.MuiButtonBase-root {
+  justify-content: center !important;
+}
