@@ -83,7 +83,7 @@ code {
 }
 .statsContainer {
   padding-top: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 0px;
 }
 
 @keyframes fadein {
@@ -201,4 +201,8 @@ a:hover {
   grid-template-columns: 30% 70% !important;
   justify-items: center;
   align-items: center;
+}
+
+label {
+  font-size: large;
 }
