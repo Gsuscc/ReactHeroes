@@ -1,20 +1,26 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 
 export default function DropBoard(props) {
   const drop = useCallback(
     (e) => {
-      e.preventDefault();
-      const card_id = e.dataTransfer.getData("card_id");
-      const card = document.getElementById(card_id);
-      card.style.display = "block";
+      console.log("drop");
       props.callbackDrop(props.setter);
+      e.preventDefault();
+      let overlays = document.querySelectorAll(".overlay");
+      overlays.forEach((item) => (item.style.zIndex = "-20"));
     },
     [props]
   );
   const leave = useCallback(
     (e) => {
-      console.log("leave");
-      props.callbackLeave(props.setter, props.value);
+      props.callbackLeave();
+    },
+    [props]
+  );
+
+  const enter = useCallback(
+    (e) => {
+      props.callbackEnter(props.setter, props.value);
     },
     [props]
   );
@@ -24,14 +30,18 @@ export default function DropBoard(props) {
   };
 
   return (
-    <div
-      id={props.id}
-      className={props.className}
-      onDrop={drop}
-      onDragOver={dragOver}
-      onDragLeave={leave}
-    >
-      {props.children}
+    <div className="relative">
+      <div id={props.id} className={props.className}>
+        {props.children}
+      </div>
+
+      <div
+        className="overlay"
+        onDrop={drop}
+        onDragOver={enter}
+        onDragLeave={leave}
+        onDragEnter={enter}
+      ></div>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useContext, useCallback, useRef } from "react";
+import React, { useContext, useCallback, useRef, useState } from "react";
 import { GlobalContext } from "../GlobalState";
 import { HeroCard } from "./HeroCard";
 import DragCard from "./dnd/DragCard";
@@ -13,33 +13,43 @@ export const FightPage = () => {
   const [greenCorner, setGreenCorner] = greenTeam;
   const [redCorner, setRedCorner] = redTeam;
   const draggedHero = useRef(null);
-  const leaveFromSetter = useRef(null);
-  const leaveFromValue = useRef(null);
-  const onDrop = useCallback(
-    (setter) => {
-      leaveFromSetter.current(
-        leaveFromValue.current.filter(
-          (item) => item.id !== draggedHero.current.id
-        )
+  const validTarget = useRef(null);
+  const leaveFrom = useRef(null);
+
+  const onDrop = useCallback(() => {
+    console.log("drag", validTarget.current);
+    if (validTarget.current) {
+      validTarget.current.setter((value) => [...value, draggedHero.current]);
+      leaveFrom.current.setter(
+        leaveFrom.current.value.filter((x) => x.id !== draggedHero.current.id)
       );
-      setter((value) => [...value, draggedHero.current]);
+    }
+    let overlays = document.querySelectorAll(".overlay");
+    overlays.forEach((item) => (item.style.zIndex = "-20"));
+  }, [draggedHero, validTarget, leaveFrom]);
+
+  const onEnter = useCallback(
+    (setter, value) => {
+      validTarget.current = {
+        setter: setter,
+        value: value,
+      };
     },
-    [draggedHero, leaveFromSetter, leaveFromValue]
+    [validTarget]
   );
 
-  const onLeave = useCallback(
-    (setter, value) => {
-      leaveFromSetter.current = setter;
-      leaveFromValue.current = value;
-    },
-    [leaveFromSetter, leaveFromValue]
-  );
+  const onLeave = useCallback(() => {
+    setTimeout(() => (validTarget.current = null), 20);
+
+    console.log("leave");
+  }, [validTarget]);
 
   const onDrag = useCallback(
-    (hero) => {
+    (hero, leavedFrom) => {
       draggedHero.current = hero;
+      leaveFrom.current = leavedFrom;
     },
-    [draggedHero]
+    [draggedHero, leaveFrom]
   );
   const powerCalculator = (powerStats) => {
     return Object.keys(powerStats).reduce((sum, key) => {
@@ -85,6 +95,7 @@ export const FightPage = () => {
         className="cardBox"
         callbackDrop={onDrop}
         callbackLeave={onLeave}
+        callbackEnter={onEnter}
         setter={setMarkedCards}
         value={markedCards}
       >
@@ -94,7 +105,11 @@ export const FightPage = () => {
               id={`card-${hero.id}`}
               draggable={true}
               callback={onDrag}
+              callbackDrop={onDrop}
               hero={hero}
+              className="draggableCard"
+              setter={setMarkedCards}
+              value={markedCards}
             >
               <HeroCard hero={hero} key={hero.id} />
             </DragCard>
@@ -115,6 +130,7 @@ export const FightPage = () => {
           className="dropZone cardBox"
           callbackDrop={onDrop}
           callbackLeave={onLeave}
+          callbackEnter={onEnter}
           setter={setGreenCorner}
           value={greenCorner}
         >
@@ -124,7 +140,11 @@ export const FightPage = () => {
                 id={`card-${hero.id}`}
                 draggable={true}
                 callback={onDrag}
+                callbackDrop={onDrop}
                 hero={hero}
+                className="draggableCard"
+                setter={setGreenCorner}
+                value={greenCorner}
               >
                 <HeroCard hero={hero} key={hero.id} />
               </DragCard>
@@ -144,6 +164,7 @@ export const FightPage = () => {
           className="dropZone cardBox"
           callbackDrop={onDrop}
           callbackLeave={onLeave}
+          callbackEnter={onEnter}
           setter={setRedCorner}
           value={redCorner}
         >
@@ -153,7 +174,11 @@ export const FightPage = () => {
                 id={`card-${hero.id}`}
                 draggable={true}
                 callback={onDrag}
+                callbackDrop={onDrop}
                 hero={hero}
+                className="draggableCard"
+                setter={setRedCorner}
+                value={redCorner}
               >
                 <HeroCard hero={hero} key={hero.id} />
               </DragCard>
