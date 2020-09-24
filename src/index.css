@@ -56,6 +56,10 @@ code {
   font-size: large;
 }
 
+.big-font {
+  font-size: xx-large;
+}
+
 .heroCard {
   font-family: superHeroFont;
   -webkit-animation: fadein 3s;

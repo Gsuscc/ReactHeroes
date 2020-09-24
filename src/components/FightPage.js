@@ -79,7 +79,7 @@ export const FightPage = () => {
     greenCorner.length <= 0 &&
     redCorner.length <= 0
   ) {
-    return <div>Arena is Empty</div>;
+    return <div className="heroFont big-font">Arena is Empty</div>;
   }
 
   const clearArena = () => {
