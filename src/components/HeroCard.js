@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { FrontPage } from "./FrontPage";
 import { BackPage } from "./BackPage";
+import useSound from "use-sound";
+import slap from "../sounds/swoosh.mp3";
 
 export const HeroCard = (props) => {
   const hero = props.hero;
   const [isFlipped, setIsFlipped] = useState(false);
+  const [play] = useSound(slap);
 
   const getColor = () => {
     if (hero.biography.alignment === "good") return { color: "darkgreen" };
@@ -14,6 +17,7 @@ export const HeroCard = (props) => {
 
   const flipped = (e) => {
     if (e.currentTarget === document.querySelector(`#hero${hero.id}`)) return;
+    play();
     setIsFlipped(!isFlipped);
   };
 
