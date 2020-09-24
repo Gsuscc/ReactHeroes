@@ -83,7 +83,7 @@ code {
 }
 .statsContainer {
   padding-top: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 0px;
 }
 
 @keyframes fadein {
@@ -202,7 +202,6 @@ a:hover {
   justify-items: center;
   align-items: center;
 }
-
 .powerbar {
   width: 300px;
   height: 20px; /* Can be anything */
@@ -259,4 +258,7 @@ a:hover {
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
   overflow: hidden;
+}
+label {
+  font-size: large;
 }

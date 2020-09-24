@@ -43,6 +43,7 @@ export const BackPage = (props) => {
           </div>
           {getColor && (
             <div>
+              <label for={`hero${hero.id}`}>Combat</label>
               <input
                 type="checkbox"
                 id={`hero${hero.id}`}
@@ -55,7 +56,7 @@ export const BackPage = (props) => {
                   state: { hero: hero },
                 }}
               >
-                <button>de</button>
+                <button>Details</button>
               </Link>
             </div>
           )}
