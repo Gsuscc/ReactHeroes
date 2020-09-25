@@ -48,7 +48,7 @@ export const BackPage = (props) => {
                 type="checkbox"
                 id={`hero${hero.id}`}
                 onClick={handleChange}
-                checked={isInGroup()}
+                defaultChecked={isInGroup()}
               ></input>
               <Link
                 to={{

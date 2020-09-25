@@ -108,6 +108,7 @@ export default function PersistentDrawerLeft() {
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
+        onClick={play}
       >
         <Toolbar>
           <IconButton
@@ -117,7 +118,7 @@ export default function PersistentDrawerLeft() {
             edge="start"
             className={clsx(classes.menuButton, open && classes.hide)}
           >
-            <MenuIcon onClick={play} />
+            <MenuIcon />
             <Typography variant="h6" noWrap>
               Menu
             </Typography>
@@ -133,10 +134,10 @@ export default function PersistentDrawerLeft() {
           paper: classes.drawerPaper,
         }}
       >
-        <div className={classes.drawerHeader}>
+        <div className={classes.drawerHeader} onClick={play}>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? (
-              <ChevronLeftIcon onClick={play} />
+              <ChevronLeftIcon />
             ) : (
               <ChevronRightIcon />
             )}
