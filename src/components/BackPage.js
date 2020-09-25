@@ -38,12 +38,12 @@ export const BackPage = (props) => {
           <div className="stats">Stats</div>
           <div className="statsContainer">
             {Object.entries(hero.powerstats).map(([key, value]) => {
-              return <Stat name={key} value={value} />;
+              return <Stat name={key} value={value} key={key + value} />;
             })}
           </div>
           {getColor && (
             <div>
-              <label for={`hero${hero.id}`}>Combat</label>
+              <label>Combat</label>
               <input
                 type="checkbox"
                 id={`hero${hero.id}`}

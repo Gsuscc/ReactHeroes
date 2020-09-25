@@ -34,7 +34,7 @@ export const HeroesList = (props) => {
   const loadCardData = useCallback(
     (hero) => {
       let newCard = (
-        <div className="card-margin">
+        <div className="card-margin" key={hero.name + hero.id}>
           <HeroCard hero={hero} key={hero.id} />
         </div>
       );
