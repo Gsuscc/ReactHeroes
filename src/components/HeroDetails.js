@@ -10,6 +10,7 @@ import { FrontPage } from "./FrontPage";
 import { BackPage } from "./BackPage";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
+import { PowerBar } from "./PowerBar";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -186,41 +187,17 @@ const PowerStats = (props) => {
   return (
     <div className="superHeroDetailedContainer">
       <span className="detailCategory">Combat:</span>
-      <div className="powerbar">
-        <span style={{ width: `${powerStats["combat"]}%` }}>
-          {powerStats["combat"]}
-        </span>
-      </div>
+      <PowerBar powerStats={powerStats["combat"]} />
       <span className="detailCategory ">Durability:</span>
-      <div className="powerbar">
-        <span style={{ width: `${powerStats["durability"]}%` }}>
-          {powerStats["durability"]}
-        </span>
-      </div>
+      <PowerBar powerStats={powerStats["durability"]} />
       <pspan className="detailCategory ">Intelligence:</pspan>
-      <div className="powerbar">
-        <span style={{ width: `${powerStats["intelligence"]}%` }}>
-          {powerStats["intelligence"]}
-        </span>
-      </div>
+      <PowerBar powerStats={powerStats["intelligence"]} />
       <span className="detailCategory ">Power:</span>
-      <div className="powerbar">
-        <span style={{ width: `${powerStats["power"]}%` }}>
-          {powerStats["power"]}
-        </span>
-      </div>
+      <PowerBar powerStats={powerStats["power"]} />
       <span className="detailCategory ">Speed:</span>
-      <div className="powerbar">
-        <span style={{ width: `${powerStats["speed"]}%` }}>
-          {powerStats["speed"]}
-        </span>
-      </div>
+      <PowerBar powerStats={powerStats["speed"]} />
       <span className="detailCategory ">Strength:</span>
-      <div className="powerbar">
-        <span style={{ width: `${powerStats["strength"]}%` }}>
-          {powerStats["strength"]}
-        </span>
-      </div>
+      <PowerBar powerStats={powerStats["strength"]} />
     </div>
   );
 };
