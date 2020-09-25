@@ -9,10 +9,11 @@ export const PowerBar = (props) => {
   };
 
   return (
-    <div className="powerbar">
+    <div className="powerbar animate">
       <span
         style={{ width: `${props.powerStats}%`, backgroundColor: getColor() }}
       >
+        <span></span>
         {props.powerStats}
       </span>
     </div>
