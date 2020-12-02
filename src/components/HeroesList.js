@@ -1,61 +1,53 @@
-import React, { useCallback, useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { HeroCard } from "./HeroCard";
-import cardFetch from "./CardFetch";
+import axios from "axios";
 
 export const HeroesList = (props) => {
-  const [lastId, setLastId] = useState(18);
+  const [page, setPage] = useState(0);
+  const [isLoading, setIsLoading] = useState(true)
+  const [hasMorePage, setHasMorePage] = useState(true)
   const [heroesList, setHeroesList] = useState([]);
-  const isLoading = useRef(false);
-  const id = useRef(1);
-  const observer = useRef();
+  const pageBottom = useRef();
 
-  const lastCard = useCallback(
-    (card) => {
-      observer.current = new IntersectionObserver((entries) => {
-        if (id.current > 731) {
-          observer.current.disconnect(card);
-          return;
+  useEffect(() => {
+    const toggleDiv = pageBottom.current;
+    const intersectionObserver = new IntersectionObserver((entries) => {
+      if (entries[0].intersectionRatio <= 0) return;
+      if (isLoading) return;
+      setPage((page) => ++page);
+    })
+    if (hasMorePage) {
+      intersectionObserver.observe(toggleDiv);
+    }
+    return () => intersectionObserver.disconnect(toggleDiv);
+  }, [isLoading, hasMorePage])
+
+  useEffect(() => {
+    setIsLoading(true)
+    console.log(page)
+    axios.get(`http://localhost:8762/api/hero/heroes?page=${page}`)
+      .then((response) => {
+        let newHeroes = cardifyHeroes(response.data.content);
+        setHeroesList(oldHeroes => [...oldHeroes, ...newHeroes])
+        setIsLoading(false)
+        if (response.data.last) {
+          setHasMorePage(false)
         }
-        if (entries[0].intersectionRatio <= 0) return;
-        if (id.current > 731) return;
-        if (isLoading.current) return;
-        setLastId((lastId) => lastId + 18);
-        isLoading.current = false;
+      }).catch((err) => {
+        console.log(err)
+        setIsLoading(false)
       });
-      if (card) observer.current.observe(card);
-    },
-    [id, isLoading]
-  );
+  }, [page])
 
-  const finishLoading = useCallback(() => {
-    isLoading.current = false;
-  }, [isLoading]);
-
-  const loadCardData = useCallback(
-    (hero) => {
-      let newCard = (
+  const cardifyHeroes = (heroes) => {
+    return heroes.map(hero => { 
+      return (
         <div className="card-margin" key={hero.name + hero.id}>
           <HeroCard hero={hero} key={hero.id} />
         </div>
-      );
-      if (parseInt(hero.id) === lastId) {
-        finishLoading();
-      }
-      setHeroesList((heroesList) => [...heroesList, newCard]);
-    },
-    [lastId, finishLoading]
-  );
-
-  useEffect(() => {
-    if (isLoading.current) return;
-    isLoading.current = true;
-    let currentId = id.current;
-    while (currentId <= lastId && currentId <= 731) {
-      cardFetch(currentId, loadCardData);
-      currentId++;
-    }
-    id.current = currentId;
-  }, [id, lastId, loadCardData]);
+      )
+    })
+  }
 
   return (
     <div>
@@ -66,7 +58,7 @@ export const HeroesList = (props) => {
       </div>
       <div
         className="scrollTrigger"
-        ref={lastCard}
+        ref={pageBottom}
         id="trigger"
         key="trigger"
       ></div>
